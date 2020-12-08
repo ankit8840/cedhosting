@@ -13,6 +13,12 @@
 =========================================================
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
+<?php require '../config.php' ;
+session_start();
+$name='';
+if(!empty($_SESSION["userdata"]))
+$name=$_SESSION["userdata"]["name"];
+?>
 <!DOCTYPE html>
 <html>
 
@@ -80,9 +86,16 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/login.html">
+            <?php if(!empty($_SESSION["userdata"])){
+                                $link1="../logout.php";
+                                $linkname1="Log Out";
+                                }else{
+                                    $link1="../login.php";
+                                    $linkname1="SIGN UP";
+                                }?>
+              <a class="nav-link" href=<?php echo $link1 ?>>
                 <i class="ni ni-key-25 text-info"></i>
-                <span class="nav-link-text">Login</span>
+                <span class="nav-link-text"><?php echo $linkname1 ?></span>
               </a>
             </li>
             <li class="nav-item">
@@ -198,7 +211,7 @@
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
                           <div>
-                            <h4 class="mb-0 text-sm">John Snow</h4>
+                            <h4 class="mb-0 text-sm"></h4>
                           </div>
                           <div class="text-right text-muted">
                             <small>2 hrs ago</small>
@@ -217,7 +230,7 @@
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
                           <div>
-                            <h4 class="mb-0 text-sm">John Snow</h4>
+                            <h4 class="mb-0 text-sm"><?php echo $name ?></h4>
                           </div>
                           <div class="text-right text-muted">
                             <small>3 hrs ago</small>
@@ -236,7 +249,7 @@
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
                           <div>
-                            <h4 class="mb-0 text-sm">John Snow</h4>
+                            <h4 class="mb-0 text-sm"><?php echo $name ?></h4>
                           </div>
                           <div class="text-right text-muted">
                             <small>5 hrs ago</small>
@@ -255,7 +268,7 @@
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
                           <div>
-                            <h4 class="mb-0 text-sm">John Snow</h4>
+                            <h4 class="mb-0 text-sm"><?php echo $name ?></h4>
                           </div>
                           <div class="text-right text-muted">
                             <small>2 hrs ago</small>
@@ -274,7 +287,7 @@
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
                           <div>
-                            <h4 class="mb-0 text-sm">John Snow</h4>
+                            <h4 class="mb-0 text-sm"><?php echo $name ?></h4>
                           </div>
                           <div class="text-right text-muted">
                             <small>3 hrs ago</small>
@@ -343,7 +356,7 @@
                     <img alt="Image placeholder" src="assets/img/theme/team-4.jpg">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                    <span class="mb-0 text-sm  font-weight-bold"><?php echo $name ?></span>
                   </div>
                 </div>
               </a>
