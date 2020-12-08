@@ -74,7 +74,7 @@ if (isset($_POST["submit"])) {
 					 </div>
 					 <div>
 						<span>Mobile<label>*</label></span>
-						<input type="text"  name="mobile" required> 
+						<input type="text"  name="mobile" pattern="^[0][1-9]{1}[0-9]{9}$" required> 
 					 </div>
 					 <div>
 						 <span>Email Address<label>*</label></span>
