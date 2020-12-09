@@ -8,11 +8,13 @@ $error = array();
 if (isset($_POST["submit"])) {
 	$name = $_POST['name'];
     $mobile = $_POST['mobile'];
-    $email = $_POST['email'];
+	$email = $_POST['email'];
+	
 	$password = $_POST['password'];
 	$repassword = $_POST['confirmpass'];
 	$question=$_POST['question'];
 	$answer=$_POST['answer'];
+	$emailkey=bin2hex(random_bytes(15));
 	if($password!=$repassword){
 		echo'<script>alert("password not matched")</script>';
 		echo'<script>window.location.href = "account.php";</script>';
@@ -46,15 +48,16 @@ if (isset($_POST["submit"])) {
        
     if (sizeof($error) == 0) 
     {
-        $fields = array('name', 'mobile','email','security_question', 'security_answer','password');
-        $values = array($name, $mobile, $email, $question,$answer,$password);
+        $fields = array('name', 'mobile','email','emailkey','security_question', 'security_answer','password');
+        $values = array($name, $mobile, $email,$emailkey, $question,$answer,$password);
 
         $res = $con->insert($fields, $values, 'tbl_user');
 
         if ($res) 
         {
-            echo'<script>alert("Register sucessfull")</script>';
-            $error=array('input'=>'form','msg'=>"1 Row inserted");
+			// include 'email.php';
+			$_SESSION["verify"]=array('mail' => $email,'emailkey'=>$emailkey);
+			echo'<script>window.location.href = "verify.php";</script>';
         }
     }
 }
@@ -74,11 +77,11 @@ if (isset($_POST["submit"])) {
 					 </div>
 					 <div>
 						<span>Mobile<label>*</label></span>
-						<input type="text"  name="mobile" pattern="^[0][1-9]{1}[0-9]{9}$" required> 
+						<input type="text"  name="mobile" pattern=^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$ required> 
 					 </div>
 					 <div>
 						 <span>Email Address<label>*</label></span>
-						 <input type="email"  name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required> 
+						 <input type="email"  name="email"  pattern="^(?!.*\.{2})[a-zA-Z0-9.]+@[a-zA-Z]+(?:\.[a-zA-Z]+)*$" required> 
 					 </div>
 					 <div>
 						 <span>Security Question<label>*</label></span>
@@ -89,7 +92,7 @@ if (isset($_POST["submit"])) {
 							 <option>What is your favourite teacher's nickname?</option>
 						 </select>
 						 <span>Security Answers<label>*</label></span>
-						 <input type="text"  name="answer" required> 
+						 <input type="text"  name="answer" pattern="^([A-Za-z0-9]+ )+[A-Za-z0-9]+$|^[A-Za-z0-9]+$" required> 
 					 </div>
 					 <div class="clearfix"> </div>
 					   <a class="news-letter" href="#">
@@ -127,4 +130,7 @@ if (isset($_POST["submit"])) {
 //     });
 </script>
 <?php require 'footer.php';?>
+
+"[a-zA-Z-]+[a-zA-Z0-9\s]*"
+
 

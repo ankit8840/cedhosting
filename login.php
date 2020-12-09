@@ -3,8 +3,16 @@
 require 'config.php';
 $con = new User();
 $con->connect('localhost', 'root', '', 'cedhost');
-$msg = '';
+$msg = 'If you have an account with us, please log in.';
 $error = array();
+// if(isset($_REQUEST['emailkey'])){
+// 	echo '<script>alert('$_REQUEST['emailkey']')</script>';
+// }
+if(!empty($_SESSION['verify'])){
+	$mail=$_SESSION['verify']['mail'];
+	$msg="Your Registration is sucessfull check your email ".$mail. " and verify your Email First
+	'<a href='#'>verify Account</a>'";
+}
 if (isset($_POST["submit"])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -47,7 +55,7 @@ if (isset($_POST["submit"])) {
 								</div>
 								<div class="col-md-6 login-right">
 									<h3>registered</h3>
-									<p>If you have an account with us, please log in.</p>
+									<p><?php echo $msg ?></p>
 									<form method="POST">
 									  <div>
 										<span>Email Address<label>*</label></span>
@@ -60,6 +68,9 @@ if (isset($_POST["submit"])) {
 									  <a class="forgot" href="#">Forgot Your Password?</a>
 									  <input type="submit" value="Login" name="submit">
 									</form>
+									<div>
+										
+									</div>
 								</div>	
 								<div class="clearfix"> </div>
 							</div>

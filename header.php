@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</ul>
 									</li> -->
 								<li><a href="services.php">Services</a></li>
-								<!-- <li class="dropdown">
+								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 									<ul class="dropdown-menu">
 										<li><a href="linuxhosting.html">Linux hosting</a></li>
@@ -91,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<li><a href="windowshosting.html">Windows Hosting</a></li>
 										<li><a href="cmshosting.html">CMS Hosting</a></li>
 									</ul>			
-								</li> -->
+								</li>
 								<li><a href="hosting.php">Hosting</a></li>
 								<li><a href="pricing.php">Pricing</a></li>
 								<li><a href="services.php">Blog</a></li>
