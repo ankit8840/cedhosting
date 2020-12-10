@@ -1,6 +1,6 @@
 <?php require 'header.php';?>
 <?php
-require 'config.php';
+require 'class/User.php';
 $con = new User();
 $con->connect('localhost', 'root', '', 'cedhost');
 $msg = 'If you have an account with us, please log in.';

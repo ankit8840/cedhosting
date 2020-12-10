@@ -1,5 +1,5 @@
 <?php require 'header.php';?>
-<?php require 'config.php';?>
+<?php require 'class/User.php';?>
 <?php
 $con = new Dbcon();
 $con->connect('localhost', 'root', '', 'cedhost');
@@ -56,7 +56,7 @@ if (isset($_POST["submit"])) {
         if ($res) 
         {
 			// include 'email.php';
-			$_SESSION["verify"]=array('mail' => $email,'emailkey'=>$emailkey);
+			$_SESSION["verify"]=array('mail' => $email,'emailkey'=>$emailkey,'mobile'=>$mobile);
 			echo'<script>window.location.href = "verify.php";</script>';
         }
     }

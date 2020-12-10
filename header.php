@@ -4,6 +4,14 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php
+require 'class/Dbcon.php';
+require 'class/product.php';
+$con = new product();
+$con->connect('localhost', 'root', '', 'cedhost');
+$hosting=$con->hosting();
+$products=$con->hostingcategory();
+?>
 <?php session_start();?>
 <!DOCTYPE HTML>
 <html>
@@ -84,15 +92,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</li> -->
 								<li><a href="services.php">Services</a></li>
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
+								<?php foreach ($hosting as $key1): ?>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $key1['prod_name'] ?><i class="caret"></i></a>
+									<?php endforeach; ?>	
 									<ul class="dropdown-menu">
-										<li><a href="linuxhosting.html">Linux hosting</a></li>
-										<li><a href="wordpresshosting.html">WordPress Hosting</a></li>
-										<li><a href="windowshosting.html">Windows Hosting</a></li>
-										<li><a href="cmshosting.html">CMS Hosting</a></li>
+									<?php foreach ($products as $key): ?>
+										<li><a href="<?php echo $key['link'] ?>"><?php echo $key['prod_name'] ?></a></li>
+									<?php endforeach; ?>
 									</ul>			
 								</li>
-								<li><a href="hosting.php">Hosting</a></li>
 								<li><a href="pricing.php">Pricing</a></li>
 								<li><a href="services.php">Blog</a></li>
 								<li><a href="contact.php">Contact</a></li>

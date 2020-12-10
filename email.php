@@ -11,9 +11,10 @@
 session_start();
 $mail=$_SESSION['verify']['mail'];
 $key=$_SESSION['verify']['emailkey'];
+$mobile=$_SESSION['verify']['mobile'];
 require "vendor/autoload.php";
 
-$robo = 'ankitdixit.9502@gmail.com';
+$robo = 'ankitdixit11111996@gmail.com';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -38,13 +39,13 @@ try {
 
     $mailer->Host = 'ssl://smtp.gmail.com';
     $mailer->SMTPAuth = true;
-    $mailer->Username = 'ankitdixit.9502@gmail.com';
+    $mailer->Username = 'ankitdixit11111996@gmail.com';
     $mailer->Password = '';
     $mailer->SMTPSecure = 'ssl';
     $mailer->Port = 465;
 
-    $mailer->setfrom('ankitdixit.9502@gmail.com', 'Name of sender');
-    $mailer->addAddress('yasirsiddiqui757@gmail.com', 'Name of recipient');
+    $mailer->setfrom('ankitdixit11111996@gmail.com', 'Name of sender');
+    $mailer->addAddress($mail, 'Name of recipient');
 
     $mailer->isHTML(true);
     $mailer->Subject = 'PHPMailer Test';
@@ -56,5 +57,5 @@ try {
 } catch (Exception $e) {
     echo "EMAIL SENDING FAILED. INFO: " . $mailer->ErrorInfo;
 }
-$_SESSION["aftermail"]=array('mail' => $email,'emailkey'=>$emailkey);
+$_SESSION["aftermail"]=array('mail' => $email,'emailkey'=>$emailkey,'mobile'=>$mobile);
 echo'<script>window.location.href = "verify.php";</script>';
