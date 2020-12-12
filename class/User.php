@@ -2,7 +2,7 @@
 class User extends Dbcon{
     public function login($email,$password) 
     {
-        $active=0;
+        $active=1;
         $sql ='SELECT * FROM tbl_user WHERE 
         `email`="'.$email.'" AND 
         `password`="'.$password.'" AND `active`="'.$active.'"';
@@ -18,6 +18,13 @@ class User extends Dbcon{
             return $rtn;
         }
       
+    }
+    public function emailverify($key)
+    {
+        $sql = "UPDATE tbl_user SET `email_approved`=1 ,`active`=1
+        WHERE `emailkey` = '$key' ";
+        $rides = $this->conn->query($sql);
+        return $rides;
     }
 }
 ?>

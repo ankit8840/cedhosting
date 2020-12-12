@@ -69,7 +69,7 @@ $name=$_SESSION["userdata"]["name"];
 									<ul class="dropdown-menu">
 										<li><a href="createCategory.php" class="nav-link">Create Category</a></li>
 										<li><a href="AddProduct.php" class="nav-link">Add Product</a></li>
-										<li><a href="windowshosting.html" class="nav-link">View Products</a></li>
+										<li><a href="viewproduct.php" class="nav-link">View Products</a></li>
 										<li><a href="cmshosting.html" class="nav-link">Create New Offers</a></li>
 									</ul>			
 						</li>

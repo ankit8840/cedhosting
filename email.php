@@ -40,7 +40,7 @@ try {
     $mailer->Host = 'ssl://smtp.gmail.com';
     $mailer->SMTPAuth = true;
     $mailer->Username = 'ankitdixit11111996@gmail.com';
-    $mailer->Password = '';
+    $mailer->Password = 'Ankit@123';
     $mailer->SMTPSecure = 'ssl';
     $mailer->Port = 465;
 
@@ -49,7 +49,7 @@ try {
 
     $mailer->isHTML(true);
     $mailer->Subject = 'PHPMailer Test';
-    $mailer->Body =  '<p>please verify<a href="http://localhost/cedhosting/login.php?emailkey='.$key.'">clickhere</a></p>';
+    $mailer->Body =  '<p>please verify<a href="http://192.168.2.76/cedhosting/login.php?emailkey='.$key.'">clickhere</a></p>';
 
     $mailer->send();
     $mailer->ClearAllRecipients();

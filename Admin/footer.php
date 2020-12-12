@@ -39,14 +39,7 @@
   <!-- Argon JS -->
   <script src="assets/js/argon.js?v=1.2.0"></script>
   
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-  <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" media="all"/>
-  <script>
-  $(function(){
-  $("#dtBasicExample").dataTable();
-  });
-  </script>
+  
 </body>
 
 </html>

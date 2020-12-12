@@ -5,14 +5,15 @@ $con = new User();
 $con->connect('localhost', 'root', '', 'cedhost');
 $msg = 'If you have an account with us, please log in.';
 $error = array();
-// if(isset($_REQUEST['emailkey'])){
-// 	echo '<script>alert('$_REQUEST['emailkey']')</script>';
-// }
-if(!empty($_SESSION['verify'])){
-	$mail=$_SESSION['verify']['mail'];
-	$msg="Your Registration is sucessfull check your email ".$mail. " and verify your Email First
-	'<a href='#'>verify Account</a>'";
+if(isset($_GET['emailkey'])){
+	$emailkey=$_GET['emailkey'];
+	$getemail=$con->emailverify($emailkey);
 }
+// if(!empty($_SESSION['verify'])){
+// 	$mail=$_SESSION['verify']['mail'];
+// 	$msg="Your Registration is sucessfull check your email ".$mail. " and verify your Email First
+// 	'<a href='#'>verify Account</a>'";
+// }
 if (isset($_POST["submit"])) {
     $email = $_POST['email'];
     $password = $_POST['password'];

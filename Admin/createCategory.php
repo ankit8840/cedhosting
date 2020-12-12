@@ -22,6 +22,23 @@ if(isset($_POST['submit'])){
 
     $res = $con->insert($fields, $values, 'tbl_product');
 }
+if(isset($_POST['edit'])){
+  //echo '<script>alert("edit")</script>';
+  $prodid=$_POST['prod_id'];
+  //echo '<script>alert("'.$prodid.'")</script>';
+  $subcat=$_POST['subcat'];
+    $link=$_POST['link'];
+    $proava=$_POST['proava'];
+    $con->updatecategory($prodid,$subcat,$link,$proava);
+    echo '<script>alert("category Updated Sucessfully")</script>';
+     echo "<script> window.location.href ='createCategory.php'</script>";
+}
+if(isset($_POST['delete'])){
+  $con->deletecategory($prodid);
+  echo '<script>alert("category Deleted Sucessfully")</script>';
+  echo "<script> window.location.href ='createCategory.php'</script>";
+}
+
 ?>
 <div class="container mt--8 pb-5">
       <div class="row justify-content-center" style="margin-top:180px;">
@@ -98,12 +115,16 @@ if(isset($_POST['submit'])){
       </div>
     </div>
     <h2 class='mb-3 text-center'>All Category</h2>
+    <button type="sumbit" class="btn btn-primary my-4 float-right edit" name="submit">Edit</button>
+
 <table id="dtBasicExample" class="table p-4" width="100%">
   <thead>
     <tr>
+      <th class="th-sm proid">Catid
+      </th>
       <th class="th-sm">Category
       </th>
-      <th class="th-sm">prod_name
+      <th class="th-sm">Sub Category
       </th>
       <th class="th-sm">Link
       </th>
@@ -111,27 +132,65 @@ if(isset($_POST['submit'])){
       </th>
       <th class="th-sm">Launch Date
       </th>
-      <th class="th-sm">Action
+      <th class="th-sm inputb">Action
       </th>
-      <th class="th-sm">Action
+      <th class="th-sm inputb">Action
       </th>
     </tr>
   </thead>
   <tbody>
-  <?php foreach ($category as $key): ?> 
+  <?php foreach ($category as $key):?>
     <tr>
+    <form method="POST">
+      <td class="proid"><input type=text class="input" value="<?php echo $key['id'] ?>" name="prod_id" hidden></td>
       <td><?php echo $name ?></td>
-      <td><?php echo $key['prod_name'] ?></td>
-      <td><a href="../<?php echo $key['link'] ?>"><?php echo $key['link'] ?></a></td>
-      <td id="defavai"><?php echo $key['prod_available'] ?></td>
+      <td><input type=text class="input" value="<?php echo $key['prod_name'] ?>" name="subcat"><span class="editinput"><?php echo $key['prod_name'] ?></span></td>
+      <td><input type=text class="input" value="<?php echo $key['link'] ?>" name="link"><span class="editinput"><?php echo $key['link'] ?></span></td>
+
+      <?php if($key['prod_available']==1){
+                $avalb="Yes";
+            }
+                else{
+                $avalb="No";
+                }
+                ?>
+            <td><select id="cars" class="input" name="proava" value="<?php echo $avalb ?>">
+                <option><?php echo $avalb ?></option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option></select><span class="editinput"><?php echo $avalb ?></span></td>
       <td><?php echo $key['prod_launch_date'] ?></td>
-      <td><input type="button" value="EDIT"></td>
-      <td><input type="button" value="Delete"></td>
+      <td><input type="submit"  class="btn btn-primary inputb" name="edit" value="Edit"/></td>
+      <td><input type="submit" onClick="javascript: return confirm('Please confirm deletion');" class="btn btn-primary inputb" name="delete" value="Delete"/></td>
+      </form>
     </tr>
+    
   <?php endforeach; ?> 
   </tbody>
 </table>
+
+<script>
+
+</script>
+
 <?php require 'footer.php'?>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+  <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" media="all"/>
+  <script>
+  $(function(){
+  $("#dtBasicExample").dataTable();
+  $(".proid").hide();
+  $(".input,.inputb").hide();
+  $(".edit").click(function(){
+    $(".input,.inputb").show();
+    $(".editinput").hide();
+  });
+  });
+  
+   
+
+</script>
+
 
 
 
