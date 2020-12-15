@@ -49,7 +49,7 @@ class product extends Dbcon{
     }
     else
     $proava=0;
-    $sql = "UPDATE `tbl_product` SET `prod_name`='$subcat' ,`link`='$link',`prod_available`='$proava'
+    $sql = "UPDATE `tbl_product` SET `prod_name`='$subcat' ,`html`='$link',`prod_available`='$proava'
     WHERE `id` = '$prodid' ";
      $products = $this->conn->query($sql);
      return $products;
@@ -76,12 +76,74 @@ class product extends Dbcon{
     }
     public function viewproduct(){
         $sql="SELECT tbl_product_description.id,prod_id,description,mon_price,annual_price,sku, 
-        tbl_product.id,prod_parent_id,prod_name,link,prod_available,prod_launch_date,features FROM 
+        tbl_product.id,prod_parent_id,prod_name,html,prod_available,prod_launch_date,features FROM 
         tbl_product_description INNER JOIN tbl_product ON tbl_product_description.prod_id =tbl_product.id ";
         $products = $this->conn->query($sql);
         if(mysqli_num_rows($products)>0){
             return $products;
         }
+    }
+    public function updateproduct($categoryid, $productname,$URL,$proava,$description,$monthlyprice,$annualprice,$sku,$features){
+        if($proava=="Yes"){
+            $proava=1;
+        }
+        else
+        $proava=0;
+        $sql = "UPDATE `tbl_product` SET `prod_name`='$productname' ,`html`='$URL',`prod_available`='$proava'
+        WHERE `id` = '$categoryid' ";
+                if ($this->conn->query($sql) === TRUE) {
+                   
+                }
+        
+           else {
+               echo "Error: " . $sql . "<br>" . $this->conn->error;
+             }
+        $sql = "UPDATE `tbl_product_description` SET `description`='$description' ,`mon_price`='$monthlyprice',`annual_price`='$annualprice',`sku`='$sku',`features`='$features'
+          WHERE `prod_id` = '$categoryid' ";
+               if ($this->conn->query($sql) === TRUE) {
+                //echo '<script>alert("ok")</script>';
+            }
+    
+       else {
+           echo "Error: " . $sql . "<br>" . $this->conn->error;
+         }
+    }
+    public function deleteproduct($id){
+    $sql="DELETE tbl_product, tbl_product_description    
+    FROM    tbl_product    
+    INNER JOIN tbl_product_description   
+    ON tbl_product.id=tbl_product_description.prod_id 
+    WHERE   tbl_product.id=$id"; 
+        if ($this->conn->query($sql) === TRUE) {
+            //echo '<script>alert("ok")</script>';
+        }
+
+    else {
+       echo "Error: " . $sql . "<br>" . $this->conn->error;
+     }
+    }
+
+    public function catpagecategory($id){
+        $sql="SELECT * FROM tbl_product WHERE `id`=$id";
+            $products = $this->conn->query($sql);
+            if(mysqli_num_rows($products)){
+                return $products;
+            }
+    }
+    public function categorydata($id){
+        $sql = "SELECT * FROM `tbl_product_description` INNER JOIN `tbl_product` ON 
+        `tbl_product_description`.`prod_id` = `tbl_product`.`id` WHERE `prod_parent_id`=$id ";
+        // if ($this->conn->query($sql) === TRUE) {
+        //     //echo '<script>alert("ok")</script>';
+        // }
+
+        // else {
+        // echo "Error: " . $sql . "<br>" . $this->conn->error;
+        // }
+        $products = $this->conn->query($sql);
+        if(mysqli_num_rows($products)>0){
+            return $products;
+        } 
     }
 }
 ?>

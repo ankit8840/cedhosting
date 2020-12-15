@@ -97,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<?php endforeach; ?>	
 									<ul class="dropdown-menu">
 									<?php foreach ($products as $key): ?>
-										<li><a href="<?php echo $key['link'] ?>"><?php echo $key['prod_name'] ?></a></li>
+										<li><a href="catpage.php?id=<?php echo $key['id'] ?>"><?php echo $key['prod_name'] ?></a></li>
 									<?php endforeach; ?>
 									</ul>			
 								</li>

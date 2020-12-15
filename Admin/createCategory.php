@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     $parentid=$_POST['id'];
     $subcat=$_POST['subcat'];
     $link=$_POST['link'];
-    $fields = array('prod_parent_id', 'prod_name','link');
+    $fields = array('prod_parent_id', 'prod_name','html');
     $values = array($parentid, $subcat,$link);
 
     $res = $con->insert($fields, $values, 'tbl_product');
@@ -126,8 +126,8 @@ if(isset($_POST['delete'])){
       </th>
       <th class="th-sm">Sub Category
       </th>
-      <th class="th-sm">Link
-      </th>
+      <!-- <th class="th-sm">Link
+      </th> -->
       <th class="th-sm">prod_available
       </th>
       <th class="th-sm">Launch Date
@@ -145,7 +145,7 @@ if(isset($_POST['delete'])){
       <td class="proid"><input type=text class="input" value="<?php echo $key['id'] ?>" name="prod_id" hidden></td>
       <td><?php echo $name ?></td>
       <td><input type=text class="input" value="<?php echo $key['prod_name'] ?>" name="subcat"><span class="editinput"><?php echo $key['prod_name'] ?></span></td>
-      <td><input type=text class="input" value="<?php echo $key['link'] ?>" name="link"><span class="editinput"><?php echo $key['link'] ?></span></td>
+      <!-- <td><input type=text class="input" value="<?php echo $key['html'] ?>" name="link"><span class="editinput"><?php echo $key['html'] ?></span></td> -->
 
       <?php if($key['prod_available']==1){
                 $avalb="Yes";
@@ -157,7 +157,8 @@ if(isset($_POST['delete'])){
             <td><select id="cars" class="input" name="proava" value="<?php echo $avalb ?>">
                 <option><?php echo $avalb ?></option>
                 <option value="Yes">Yes</option>
-                <option value="No">No</option></select><span class="editinput"><?php echo $avalb ?></span></td>
+                <option value="No">No</option>
+                </select><span class="editinput"><?php echo $avalb ?></span></td>
       <td><?php echo $key['prod_launch_date'] ?></td>
       <td><input type="submit"  class="btn btn-primary inputb" name="edit" value="Edit"/></td>
       <td><input type="submit" onClick="javascript: return confirm('Please confirm deletion');" class="btn btn-primary inputb" name="delete" value="Delete"/></td>

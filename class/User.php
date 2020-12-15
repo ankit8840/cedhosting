@@ -26,5 +26,12 @@ class User extends Dbcon{
         $rides = $this->conn->query($sql);
         return $rides;
     }
+    public function mobileverify($mobile)
+    {
+        $sql = "UPDATE tbl_user SET `phone_approved`=1 ,`active`=1
+        WHERE `mobile` = '$mobile' ";
+        $rides = $this->conn->query($sql);
+        return $rides;
+    }
 }
 ?>

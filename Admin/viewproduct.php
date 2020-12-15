@@ -4,12 +4,35 @@
 $con = new product();
 $con->connect('localhost', 'root', '', 'cedhost');
 $products=$con->viewproduct();
-foreach($products as $key){
-  $features=$key['features'];
-  $features=json_decode($features);
-  foreach($features as $key1)
+if(isset($_POST['edit'])){
+  $categoryid=$_POST['prod_id'];
+  $productname=$_POST['prodname'];
+  $URL=$_POST['link'];
+  $proava=$_POST['proava'];
+  $description=$_POST['description'];
+  $monthlyprice=$_POST['monthlyprice'];
+  $annualprice=$_POST['annualprice'];
+  $sku=$_POST['sku'];
+  $webspace=$_POST['webspace'];
+  $bandwidth=$_POST['bandwidth'];
+  $domain=$_POST['domain'];
+  $language=$_POST['language'];
+  $mailbox=$_POST['mailbox'];
+  $features = array("webspace"=>$webspace, "bandwidth"=>$bandwidth, "domain"=>$domain,"language"=>$language,"mailbox"=>$mailbox);
+  $features= json_encode($features);
+  // $fields = array('prod_parent_id', 'prod_name','link');
+  $con->updateproduct($categoryid, $productname,$URL,$proava,$description,$monthlyprice,$annualprice,$sku,$features);
+  echo '<script>alert("Product Updated Sucessfully")</script>';
+  echo "<script> window.location.href ='viewproduct.php'</script>";
+}
+if(isset($_POST['delete'])){
+  $categoryid=$_POST['prod_id'];
+  $con->deleteproduct($categoryid);
+  echo '<script>alert("Product Updated Sucessfully")</script>';
+  echo "<script> window.location.href ='viewproduct.php'</script>";
 }
 ?>
+
 <div class="row">
         <div class="col">
           <div class="card bg-white shadow">
@@ -19,6 +42,7 @@ foreach($products as $key){
             <div class="table-responsive">
             <table id="dtBasicExample" class="table p-4" width="100%">
   <thead>
+  <button type="sumbit" class="btn btn-primary my-4 float-right edit" name="submit">Edit</button>
     <tr>
       <th class="th-sm proid">Catid
       </th>
@@ -37,6 +61,8 @@ foreach($products as $key){
       <th class="th-sm">Monthly price
       </th>
       <th class="th-sm">Annual price
+      </th>
+      <th class="th-sm">Sku
       </th>
       <th class="th-sm">Web space
       </th>
@@ -59,9 +85,9 @@ foreach($products as $key){
     <tr>
     <form method="POST">
       <td class="proid"><input type=text class="input" value="<?php echo $key['id'] ?>" name="prod_id" hidden></td>
-      <td><?php echo $name ?></td>
-      <td><input type=text class="input" value="<?php echo $key['prod_name'] ?>" name="subcat"><span class="editinput"><?php echo $key['prod_name'] ?></span></td>
-      <td><input type=text class="input" value="<?php echo $key['link'] ?>" name="link"><span class="editinput"><?php echo $key['link'] ?></span></td>
+      <td>Hosting</td>
+      <td><input type=text class="input" value="<?php echo $key['prod_name'] ?>" name="prodname"><span class="editinput"><?php echo $key['prod_name'] ?></span></td>
+      <td><input type=text class="input" value="<?php echo $key['html'] ?>" name="link"><span class="editinput"><?php echo $key['html'] ?></span></td>
 
       <?php if($key['prod_available']==1){
                 $avalb="Yes";
@@ -75,14 +101,23 @@ foreach($products as $key){
                 <option value="Yes">Yes</option>
                 <option value="No">No</option></select><span class="editinput"><?php echo $avalb ?></span></td>
       <td><?php echo $key['prod_launch_date'] ?></td>
-      <td><input type=text class="input" value="<?php echo $key['link'] ?>" name="link"><span class="editinput">Description</span></td>
-      <td><input type=text class="input" value="<?php echo $key['link'] ?>" name="link"><span class="editinput">Monthly price</span></td>
-      <td><input type=text class="input" value="<?php echo $key['link'] ?>" name="link"><span class="editinput">Annual price</span></td>
-      <td><input type=text class="input" value="<?php echo $key['link'] ?>" name="link"><span class="editinput">Web space</span></td>
-      <td><input type=text class="input" value="<?php echo $key['link'] ?>" name="link"><span class="editinput">Bandwidth</span></td>
-      <td><input type=text class="input" value="<?php echo $key['link'] ?>" name="link"><span class="editinput">Free Domian</span></td>
-      <td><input type=text class="input" value="<?php echo $key['link'] ?>" name="link"><span class="editinput">Language</span></td>
-      <td><input type=text class="input" value="<?php echo $key['link'] ?>" name="link"><span class="editinput">Mail Box</span></td>
+      <td><input type=text class="input" value="<?php echo $key['description'] ?>" name="description"><span class="editinput"><?php echo $key['description'] ?></span></td>
+      <td><input type=text class="input" value="<?php echo $key['mon_price'] ?>" name="monthlyprice"><span class="editinput"><?php echo "₹". $key['mon_price'] ?></span></td>
+      <td><input type=text class="input" value="<?php echo $key['annual_price'] ?>" name="annualprice"><span class="editinput"><?php echo "₹". $key['annual_price'] ?></span></td>
+      <td><input type=text class="input" value="<?php echo $key['sku'] ?>" name="sku"><span class="editinput"><?php echo $key['sku'] ?></span></td>
+      <?php 
+        $coded=json_decode($key['features']);
+        $webspace=$coded->webspace;
+        $bandwidth=$coded->bandwidth;
+        $domain=$coded->domain;
+        $language=$coded->language;
+        $mailbox=$coded->mailbox;
+      ?>
+      <td><input type=text class="input" value="<?php echo $webspace ?>" name="webspace"><span class="editinput"><?php echo $webspace ?></span></td>
+      <td><input type=text class="input" value="<?php echo $bandwidth ?>" name="bandwidth"><span class="editinput"><?php echo $bandwidth ?></span></td>
+      <td><input type=text class="input" value="<?php echo $domain ?>" name="domain"><span class="editinput"><?php echo $domain ?></span></td>
+      <td><input type=text class="input" value="<?php echo $language ?>" name="language"><span class="editinput"><?php echo $language ?></span></td>
+      <td><input type=text class="input" value="<?php echo $mailbox ?>" name="mailbox"><span class="editinput"><?php echo $mailbox ?></span></td>
       <td><input type="submit"  class="btn btn-primary inputb" name="edit" value="Edit"/></td>
       <td><input type="submit" onClick="javascript: return confirm('Please confirm deletion');" class="btn btn-primary inputb" name="delete" value="Delete"/></td>
       </form>
