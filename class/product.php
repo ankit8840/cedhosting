@@ -145,6 +145,22 @@ class product extends Dbcon{
             return $products;
         } 
     }
+    public function Addcart($id){
+        $sql = "SELECT * FROM `tbl_product_description` INNER JOIN `tbl_product` ON 
+        `tbl_product_description`.`prod_id` = `tbl_product`.`id` WHERE `prod_id`=$id ";
+        //if ($this->conn->query($sql) === TRUE) {
+            //echo '<script>alert("ok")</script>';
+       // }
+
+        // else {
+        // echo "Error: " . $sql . "<br>" . $this->conn->error;
+        // }
+        $products = $this->conn->query($sql);
+        if(mysqli_num_rows($products)>0){
+            echo '<script>alert("ok")</script>';
+            return $products;
+        } 
+    }
 }
 ?>
 

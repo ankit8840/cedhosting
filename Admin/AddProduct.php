@@ -70,13 +70,23 @@ if(isset($_POST['submit'])){
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
-                        <div class="form-group">
+                        <!-- //<div class="col-lg-12"> -->
+                        <!-- <div class="form-group">
                             <label class="form-control-label" for="input-username">Page URL</label>
                             <input type="text" id="input-username" class="form-control" name="URL" placeholder="Page URL" value="">
                             <span id="eb3" class="error"></span>
-                        </div>
-                        </div>
+                        </div> -->
+                            <div class="row justify-content-md-center">
+                              <div class="col-md-12 col-lg-12">
+                                <h1 class="h2 mb-4">Submit issue</h1>
+                                <label>Describe the issue in detail</label>
+                                <div class="form-group">
+                                  <textarea id="editor"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                     <!-- <div class="row">
                         <div class="col-lg-12">
@@ -208,7 +218,23 @@ if(isset($_POST['submit'])){
       <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>    
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
+<script>
+  tinymce.init({
+    selector: 'textarea#editor',
+    menubar: false
+  });
+</script>
+<script>
+  tinymce.init({
+    selector: 'textarea#editor',
+    skin: 'bootstrap',
+    plugins: 'lists, link, image, media',
+    toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
+    menubar: false
+  });
+</script>
 <script>
 $(document).ready(function() {
   var x=0;

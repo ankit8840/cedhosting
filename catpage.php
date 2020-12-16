@@ -6,6 +6,7 @@ $con->connect('localhost', 'root', '', 'cedhost');
 $id=$_GET['id'];
 $products=$con->catpagecategory($id);
 $categorydata=$con->categorydata($id);
+
 ?>
 	<!---header--->
 		<!---singleblog--->
@@ -50,7 +51,7 @@ $categorydata=$con->categorydata($id);
 													</ul>
 												</div>
 												
-												<a href="catpage.php?id=<?php echo $key1['prod_id']?>">buy now</a>
+												<a href="cart.php?pid=<?php echo $key1['prod_id']?>">buy now</a>
 											</div>
 											<?php endforeach; ?>
 									</div>
