@@ -4,6 +4,7 @@
 $con = new product();
 $con->connect('localhost', 'root', '', 'cedhost');
 $id=$_GET['id'];
+$pid=$_GET['id'];
 $products=$con->catpagecategory($id);
 $categorydata=$con->categorydata($id);
 
@@ -51,7 +52,7 @@ $categorydata=$con->categorydata($id);
 													</ul>
 												</div>
 												
-												<a href="cart.php?pid=<?php echo $key1['prod_id']?>">buy now</a>
+												<a href="cart.php?pid=<?php echo $key1['prod_id']?>& page=<?php echo $pid?>">buy now</a>
 											</div>
 											<?php endforeach; ?>
 									</div>

@@ -157,7 +157,7 @@ class product extends Dbcon{
         // }
         $products = $this->conn->query($sql);
         if(mysqli_num_rows($products)>0){
-            echo '<script>alert("ok")</script>';
+            //echo '<script>alert("ok")</script>';
             return $products;
         } 
     }

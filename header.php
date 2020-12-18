@@ -104,7 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><a href="pricing.php">Pricing</a></li>
 								<li><a href="services.php">Blog</a></li>
 								<li><a href="contact.php">Contact</a></li>
-								<li><a href="contact.php"><i class="fa fa-shopping-cart"></i>
+								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i>
 									cart</a></li>
 									<?php if(!empty($_SESSION["userdata"])){
                                 $link1="logout.php";
