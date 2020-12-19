@@ -1,12 +1,8 @@
 <?php
    session_start();
    
-    //include "dbc.php";
-    //include "Dbcon.php";
-    $error= array();
-    $msg="";
-            // $_SESSION['mobile']=$_POST['number'];
-            // $number= $_POST['number'];
+            $error= array();
+            $msg="";
             $number=$_SESSION['verify']['mobile'];
             $otp = rand(100000, 999999);
             $_SESSION['session_otp'] = $otp;
@@ -50,15 +46,4 @@
                 echo'<script>window.location.href = "verify.php";</script>';
             } 
             
-    // if(isset($_POST['verify'])){
-    //     $number= $_POST['otp'];
-    //     if($_SESSION['session_otp']==$number){
-           
-    //         header('Location:signup.php');
-    //     }
-    //     else{
-    //         echo "<script type='text/javascript'>alert('OTP Dosen't Match');</script>";
-    //         unset( $_SESSION['mobile']);
-    //     }
-    // }
 ?>          

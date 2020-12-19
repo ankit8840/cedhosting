@@ -32,18 +32,6 @@ if (isset($_POST["submit"])) {
                     
 				}
 			}
-      
-    // if(!empty($mobile)){
-    //     if(preg_match('/^[0-9]{10}+$/', $mobile) && preg_match('/[a-z\s]/i',$name)){
-    //         $mobile=$mobile;
-    //         $name=$name;
-    //     }
-    //     else{
-    //     echo'<script>alert("please enter valid Data")</script>';
-    //     header("Refresh:0; url=singup.php");
-    //     return;
-    //     }
-   
 
        
     if (sizeof($error) == 0) 
@@ -55,7 +43,6 @@ if (isset($_POST["submit"])) {
 
         if ($res) 
         {
-			// include 'email.php';
 			$_SESSION["verify"]=array('mail' => $email,'emailkey'=>$emailkey,'mobile'=>$mobile);
 			echo'<script>window.location.href = "verify.php";</script>';
         }

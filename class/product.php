@@ -101,7 +101,6 @@ class product extends Dbcon{
         $sql = "UPDATE `tbl_product_description` SET `description`='$description' ,`mon_price`='$monthlyprice',`annual_price`='$annualprice',`sku`='$sku',`features`='$features'
           WHERE `prod_id` = '$categoryid' ";
                if ($this->conn->query($sql) === TRUE) {
-                //echo '<script>alert("ok")</script>';
             }
     
        else {
@@ -115,7 +114,6 @@ class product extends Dbcon{
     ON tbl_product.id=tbl_product_description.prod_id 
     WHERE   tbl_product.id=$id"; 
         if ($this->conn->query($sql) === TRUE) {
-            //echo '<script>alert("ok")</script>';
         }
 
     else {
@@ -133,13 +131,6 @@ class product extends Dbcon{
     public function categorydata($id){
         $sql = "SELECT * FROM `tbl_product_description` INNER JOIN `tbl_product` ON 
         `tbl_product_description`.`prod_id` = `tbl_product`.`id` WHERE `prod_parent_id`=$id ";
-        // if ($this->conn->query($sql) === TRUE) {
-        //     //echo '<script>alert("ok")</script>';
-        // }
-
-        // else {
-        // echo "Error: " . $sql . "<br>" . $this->conn->error;
-        // }
         $products = $this->conn->query($sql);
         if(mysqli_num_rows($products)>0){
             return $products;
@@ -148,16 +139,8 @@ class product extends Dbcon{
     public function Addcart($id){
         $sql = "SELECT * FROM `tbl_product_description` INNER JOIN `tbl_product` ON 
         `tbl_product_description`.`prod_id` = `tbl_product`.`id` WHERE `prod_id`=$id ";
-        //if ($this->conn->query($sql) === TRUE) {
-            //echo '<script>alert("ok")</script>';
-       // }
-
-        // else {
-        // echo "Error: " . $sql . "<br>" . $this->conn->error;
-        // }
         $products = $this->conn->query($sql);
         if(mysqli_num_rows($products)>0){
-            //echo '<script>alert("ok")</script>';
             return $products;
         } 
     }

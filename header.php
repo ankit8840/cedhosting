@@ -35,22 +35,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery.chocolat.js"></script>
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<!--lightboxfiles-->
-<!-- <script type="text/javascript">
-	$(function() {
-	$('.team a').Chocolat();
-	});
-</script>	
-<script type="text/javascript" src="js/jquery.hoverdir.js"></script>	
-						<script type="text/javascript">
-							$(function() {
-							
-								$(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
-
-							});
-						</script>						 -->
-<!--script-->
 </head>
 <body>
 	<!---header--->

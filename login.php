@@ -9,25 +9,10 @@ if(isset($_GET['emailkey'])){
 	$emailkey=$_GET['emailkey'];
 	$getemail=$con->emailverify($emailkey);
 }
-// if(!empty($_SESSION['verify'])){
-// 	$mail=$_SESSION['verify']['mail'];
-// 	$msg="Your Registration is sucessfull check your email ".$mail. " and verify your Email First
-// 	'<a href='#'>verify Account</a>'";
-// }
 if (isset($_POST["submit"])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $login=$con->login($email,$password);
-    // echo '<script>alert("'.$login.'");</script>';
-    // if(isset($_SESSION['booking'])){
-    //     $time=$_SESSION['booking']['time'];
-    //     $logtime=$_SESSION['userdata']['logintime'];
-    //     $totaltime=$logtime-$time;
-    //     if($totaltime>30){
-    //         echo '<script>alert("Your Booking session is expired")</script>';
-    //         unset($_SESSION['booking']);
-    //     }
-    // }
     
       
     if($login!="Login Failed"){
